@@ -1,0 +1,15 @@
+<% if (itens && itens.length > 0) { %>
+    <h6 class="mb-2">Livros do Pedido:</h6>
+    <ul class="list-unstyled mb-0">
+        <% itens.forEach(item => { %>
+            <li class="mb-2">
+                <i class="bi bi-bookmark-fill text-primary me-2"></i>
+                <span><%= item.livroTitulo %></span>
+                <small class="text-muted d-block ms-4">Devolucao: <%= new Date(item.dataDevolucao).toLocaleDateString('pt-BR') %></small>
+            </li>
+            
+        <% }) %>
+    </ul>
+<% } else { %>
+    <p class="text-muted mb-0">Nenhum item no pedido.</p>
+<% } %>

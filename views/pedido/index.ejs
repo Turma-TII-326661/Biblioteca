@@ -1,0 +1,33 @@
+<% title = "Pedidos" %>
+<div class="row">
+    <div class="col-12">
+        <a href="/pedidos/novo" class="btn btn-primary"><i class="bi bi-arrow"></i>Novo</a>
+    </div>
+</div>
+<% if (pedidos.length === 0) { %>
+     <div class="alert alert-info text -center" role="alert">
+        <p class="mb-3">Nenhum pedido foi cadastrado.</p>
+        <a href="/pedidos/novo" class="btn btn-primary">Adicionar o primeiro pedido</a>
+    </div>
+<% } else { %>
+    <div class="row g-4">
+        <% pedidos.forEach(pedido => { %>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Ordem:<%= pedido.ID %> - Usuario: <%= pedido.nome %></h5>
+                        <p><%= pedido.nomeCompleto %></p>
+                        <div class="mt-3">
+                            <%- include('./partes/itens', {itens: pedido.itens}) %>
+                        </div>
+                        <a href="/pedidos/<%= pedido.ID %>" class="btn btn-sm btn-info">Ver</a>
+                        <a href="/pedidos/<%= pedido.ID %>/editar" class="btn btn-sm btn-warning">Editar</a>
+                        <form action="/pedidos/<%= pedido.ID %>/deletar" method="post" class="d-inline" onsubmit="return confirm('Confirmar remover o Pedido?')">
+                            <button type="submit" class="btn btn-sm btn-danger">Remover</button>
+                        </form>                        
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+<% } %>

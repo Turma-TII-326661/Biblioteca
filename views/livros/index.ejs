@@ -1,0 +1,46 @@
+<% title = "Livros" %>
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="mb-4">Catálogo de Livros</h1>
+    </div>
+</div>
+<form method="get" action="/livros" class="mb-4">
+    <div class="input-group">
+        <input type="search" name="q" class="form-control" placeholder="Pesquise" 
+        value="<% typeof termo !== 'undefined' && termo ? termo : '' %>">
+        <button class="btn btn-outline-secondary" type="submit">Pesquisar</button>
+        <% if(typeof termo !== 'undefined' && termo) { %>
+            <a href="/livros" class="btn btn-outline-secondary">Limpar</a>
+        <% } %>
+    </div>
+</form>
+<% if (livros.length === 0) { %>
+    <div class="alert alert-info text -center" role="alert">
+        <% if(typeof termo !== 'undefined' && termo) { %>
+            <p class="mb-3">Nenhum livro foi encontrado para a pesquisa de <%= termo%>.</p>
+            <a href="/livros" class="btn btn-outline-secondary">Voltar</a>
+        <% } else { %>
+            <p class="mb-3">Nenhum livro foi cadastrado.</p>
+            <a href="/livros/novo" class="btn btn-primary">Adicionar o primeiro livro</a>
+        <% } %>
+    </div>
+<% } else { %>
+    <div class="row g-4">
+        <% livros.forEach(livro => { %>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= livro.titulo %></h5>
+                        <p><%= livro.editora %></p>
+                        <p>Quantidade disponivel: <%= livro.quantidade %></p>
+                        <a href="/livros/<%= livro.uid %>" class="btn btn-sm btn-info">Ver</a>
+                        <a href="/livros/<%= livro.uid %>/editar" class="btn btn-sm btn-warning">Editar</a>
+        <form action="/livros/<%= livro.uid %>/deletar" method="post" class="d-inline" onsubmit="return confirm('Confirmar remover o livro?')">
+            <button type="submit" class="btn btn-sm btn-danger">Remover</button>
+        </form>                        
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+<% } %>

@@ -1,0 +1,17 @@
+<% title = "Entrar" %>
+    <div class="row justify-content-center align-items-center">
+        <% if (erro) { %>
+            <div class="alert alert-danger" role="alert"><%= erro %></div>
+        <% } %>
+        <form action="/logar/login" method="post">
+            <div class="mb-3">
+                <label for="nomeUsuario" class="form-label">Coloque seu nome de usuario</label>
+                <input type="text" class="form-control" name="nomeUsuario" id="nomeUsuario" required>
+            </div>
+            <div class="mb-3">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control" name="senha" id="senha" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+    </div>

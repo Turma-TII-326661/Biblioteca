@@ -1,0 +1,29 @@
+<% title = "Funcionarios" %>
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="mb-4">Gestão de Funcionarios</h1>
+    </div>
+</div>
+<% if (funcionarios.length === 0) { %>
+    <div class="alert alert-info text -center" role="alert">
+        <p class="mb-3">Nenhum funcionario foi cadastrado.</p>
+        <a href="/funcionarios/novo" class="btn btn-primary">Adicionar o primeiro funcionario</a>
+    </div>
+<% } else { %>
+    <div class="row g-4">
+        <% funcionarios.forEach(funcionario => { %>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= funcionario.nomeUsuario %></h5>
+                        <a href="/funcionarios/<%= funcionario.id %>" class="btn btn-sm btn-info"><i class="bi bi-eye"></i>Ver</a>
+                        <a href="/funcionarios/<%= funcionario.id %>/editar" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i>Editar</a>
+        <form action="/funcionarios/<%= funcionario.id %>/deletar" method="post" class="d-inline" onsubmit="return confirm('Confirmar remover o funcionario?')">
+            <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i>Remover</button>
+        </form>                        
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+<% } %>

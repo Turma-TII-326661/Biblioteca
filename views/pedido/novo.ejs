@@ -1,0 +1,61 @@
+<% title = 'Novo Pedido' %>
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+        <h2 class="mb-4">Emprestar livro</h2>
+        <p class="text-muted mb-4">Realizar o emprestimo com base no livro para o usuario que o funcionario faz.</p>
+        <form action="/pedidos" method="post">
+            <div class="mb-3">
+                <label for="funcionarioID" class="form-label">Selecione o funcionario</label>
+                <select class="form-select" id="funcionarioID" name="funcionarioID" required>
+                    <option value="">Selecionar um funcionario</option>
+                    <% funcionarios.forEach(funcionario => { %>
+                        <option value="<%= funcionario.ID %>"><%= funcionario.nomeCompleto %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="usuarioID" class="form-label">Selecione o usuario</label>
+                <select class="form-select" id="usuarioID" name="usuarioID" required>
+                    <option value="">Selecionar um usuario</option>
+                    <% usuarios.forEach(usuario => { %>
+                        <option value="<%= usuario.ID %>"><%= usuario.Nome %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+                <label class="form-label mb-0">Livros do pedido</label>
+                <button type="button" class="btn btn-outline-primary btm-sm" id="adicionar-item-pedido">
+                     <i class="bi bi-plus"></i> Adicionar livro
+                </button>
+            </div>
+            <div id="itens-pedidos" class="d-grid gap-3"></div>
+            <template id="item-pedido-template">
+                <div class="border rounded p-3 bg-light item-pedido">
+                    <div class="row g-3 align-itens-end">
+                        <div class="col-12 col-md-7">
+                            <label class="form-label">Livro</label>
+                            <select class="form-select" name="livrosUIDS[]" required> <!--livroUID -->
+                                <option value="">Selecionar um livro</option>
+                                <% livros.forEach(livro => { %>
+                                    <option value="<%= livro.uid %>"><%= livro.titulo %></option>
+                                <% }) %>    
+                            </select>
+                        </div>
+                         <div class="col-12 col-md-4">
+                            <label class="form-label">Data de devolucao</label>
+                            <input type="date" class="form-control" name="datasDevolucao[]" required>
+                        </div>
+                        <div class="col-12 col-md-1 d-grid">
+                            <button type="button" class="btn btn-outline-danger remover-item-pedido" aria-label="Remover livro">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <button type="submit" class="btn btn-primary w-100">
+                Adicionar Pedido
+            </button>
+        </form>
+    </div>
+</div>

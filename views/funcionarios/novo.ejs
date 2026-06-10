@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+        <h2 class="mb-4">Adicionar novo funcionario</h2>
+
+        <form action="/funcionarios" method="post">
+
+            <div class="mb-3">
+                <label for="nomeUsuario" class="form-label">Nome de Usuario</label>
+                <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="senha" name="senha" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="nomeCompleto" class="form-label">Nome Completo</label>
+                <input placeholder="João Dias" type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="cargo" class="form-label">Cargo</label>
+                <input type="text" class="form-control" id="cargo" name="cargo" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="bi bi-plus"></i> Adicionar Funcionario
+            </button>
+
+        </form>
+    </div>
+</div>
